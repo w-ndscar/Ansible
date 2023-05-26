@@ -1,0 +1,9 @@
+---
+- name: win_reboot_msg
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Reboot the machine with a message
+      ansible.windows.win_reboot:
+        msg: "The PC will reboot in 2 minutes. Please click close on this dialog and save all the applications and Sign out"
+        pre_reboot_delay: 120
