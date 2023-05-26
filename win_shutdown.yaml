@@ -1,0 +1,7 @@
+---
+- name: Execute custom CMD command on Windows hosts
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Execute command
+      win_command: cmd.exe /c "shutdown /r /f"
