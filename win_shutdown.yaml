@@ -4,4 +4,5 @@
   gather_facts: false
   tasks:
     - name: Execute shutdown force command
-      win_command: shutdown /s /f"
+      ansible.windows.win_command:
+        cmd: shutdown /s /f
