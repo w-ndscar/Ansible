@@ -1,0 +1,9 @@
+---
+- name: Execute custom CMD command on Windows hosts
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Delay shutting down the remote node
+      community.general.shutdown:
+        delay: 60
+        msg: The PC is going to shutdown in 1 minute. Please save and close all the Applications and Sign Out
