@@ -3,5 +3,5 @@
   hosts: win
   gather_facts: false
   tasks:
-    - name: Execute command
-      win_command: cmd.exe /c "shutdown /r /f"
+    - name: Execute shutdown force command
+      win_command: shutdown /s /f"
