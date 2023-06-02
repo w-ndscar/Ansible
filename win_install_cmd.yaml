@@ -4,7 +4,6 @@
   gather_facts: false
   tasks:
     - name: Silent install PDF Sam MSI using win_package
-      ansible.windows.win_package:
-        path: \\192.168.32.190\Software\MSI\pdfsam-5.1.1
-        state: present
+      ansible.windows.win_command:
+        cmd: msiexec.exe /i "\\192.168.32.190\Software\MSI\pdfsam-5.1.1.msi" /QN
       
