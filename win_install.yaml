@@ -3,6 +3,6 @@
   hosts: win
   gather_facts: false
   tasks:
-    - name: Execute shutdown force command
+    - name: Silent install PDF Sam MSI using cmd
       ansible.windows.win_command:
         cmd: msiexec /i "\\192.168.32.190\Software\MSI\pdfsam-5.1.1" /lv REBOOT="ReallySuppress" /qn
