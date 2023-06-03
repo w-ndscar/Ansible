@@ -1,6 +1,6 @@
 ---
 - name: win_shutdown_comm
-  hosts: win
+  hosts: all
   gather_facts: false
   tasks:
     - name: Shutdown with a message using Community module

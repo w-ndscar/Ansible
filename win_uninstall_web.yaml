@@ -1,6 +1,6 @@
 ---
 - name: Uninstall MSI using win_package module
-  hosts: win
+  hosts: all
   gather_facts: false
   tasks:
     - name: Silent uninstall PDF Sam MSI using win_package

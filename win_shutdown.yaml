@@ -1,8 +1,9 @@
 ---
 - name: Execute custom CMD command on Windows hosts
-  hosts: win
+  hosts: all
   gather_facts: false
   tasks:
     - name: Execute shutdown force command
+    # Caution: This command shuts down all the specified hosts.
       ansible.windows.win_command:
         cmd: shutdown /s /f

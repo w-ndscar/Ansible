@@ -1,11 +1,12 @@
 ---
 - name: Install MSI using cmd
-  hosts: win
+  hosts: all
   gather_facts: false
   tasks:
     - name: Silent install PDF Sam MSI using cmd (win_command)
       ansible.windows.win_command:
-        cmd: msiexec.exe /i "\\192.168.32.190\Software\MSI\pdfsam-5.1.1.msi" /qb /norestart CHECK_FOR_UPDATES=false DONATE_NOTIFICATION=false SKIPTHANKSPAGE=Yes
+      # Specify the install_path on Variables in AWX before running
+        cmd: msiexec.exe /i "{{ install_path }}\pdfsam-5.1.1.msi" /qb /norestart CHECK_FOR_UPDATES=false DONATE_NOTIFICATION=false SKIPTHANKSPAGE=Yes
       become: true
       become_method: runas
       become_flags: logon_type=new_credentials logon_flags=netcredentials_only

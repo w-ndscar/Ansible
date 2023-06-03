@@ -1,10 +1,11 @@
 ---
 - name: Uninstall MSI using win_package module (UNC)
-  hosts: win
+  hosts: all
   gather_facts: false
   tasks:
     - name: Silent uninstall PDF Sam MSI using win_package by referring to the specified UNC path
       ansible.windows.win_package:
+      # Specify the install_path on Variables in AWX before running
         path: '{{ install_path }}\pdfsam-5.1.1.msi'
         state: absent
         arguments: /q /norestart

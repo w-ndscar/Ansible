@@ -1,9 +1,10 @@
 ---
 - name: win_reboot_msg
-  hosts: win
+  hosts: all
   gather_facts: false
   tasks:
     - name: Reboot the machine with a message
       ansible.windows.win_reboot:
+      # Caution: This play restarts all the specified hosts.
         msg: "The PC will reboot in 15 minutes. Please click Close on this dialog and Save and close all the applications and Sign out"
         pre_reboot_delay: 900
