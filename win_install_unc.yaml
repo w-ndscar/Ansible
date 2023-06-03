@@ -1,0 +1,10 @@
+---
+- name: Install MSI using win_package module
+  hosts: win
+  gather_facts: false
+  tasks:
+    - name: Silent install PDF Sam MSI using win_package
+      ansible.windows.win_package:
+        path: '{{ install_path }}\pdfsam-5.1.1.msi'
+        state: present
+        arguments: /qb /norestart CHECK_FOR_UPDATES=false DONATE_NOTIFICATION=false SKIPTHANKSPAGE=Yes
