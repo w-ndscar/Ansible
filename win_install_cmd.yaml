@@ -5,5 +5,5 @@
   tasks:
     - name: Silent install PDF Sam MSI using cmd
       ansible.windows.win_command:
-        cmd: msiexec.exe /i "C:\pdfsam-5.1.1.msi" /QN
+        cmd: msiexec.exe /i "\\192.168.24.200\Software\Install\pdfsam-5.1.1.msi" /QN
       
