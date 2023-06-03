@@ -5,6 +5,6 @@
   tasks:
     - name: Silent uninstall PDF Sam MSI using win_package
       ansible.windows.win_package:
-        path: C:\pdfsam-5.1.1
+        path: https://github.com/torakiki/pdfsam/releases/download/v5.1.2/pdfsam-5.1.2.msi
         state: absent
       
