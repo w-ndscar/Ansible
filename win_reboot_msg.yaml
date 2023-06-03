@@ -5,5 +5,5 @@
   tasks:
     - name: Reboot the machine with a message
       ansible.windows.win_reboot:
-        msg: "The PC will reboot in 2 minutes. Please click close on this dialog and save all the applications and Sign out"
-        pre_reboot_delay: 120
+        msg: "The PC will reboot in 15 minutes. Please click Close on this dialog and Save and close all the applications and Sign out"
+        pre_reboot_delay: 900
