@@ -8,7 +8,7 @@
     - name: Creating a new folder with the current date
       ansible.windows.win_file:
       # Create a new folder with the current date
-          file: path="D:\Test\{{ date }}"
+          path: D:\Test\{{ date }}
           state: directory
       tags:
       - Create_Folder
