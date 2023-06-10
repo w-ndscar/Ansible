@@ -4,7 +4,7 @@
   gather_facts: false
   vars:
         date: "{{ lookup('pipe', 'date +%b%d') }}"
-        src_path: C:\MSI\
+        src_path: \\192.168.56.16\Scratch\Scratch\New folder\MSI\
   tasks:
     - name: Creating a new folder with the current date
       ansible.windows.win_file:
