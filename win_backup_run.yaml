@@ -5,20 +5,19 @@
   vars:
         date: "{{ lookup('pipe', 'date +%b%d') }}"
         src_path: \\192.168.56.16\Scratch\Scratch\New folder\MSI\
+        dest_path: D:\Test
   tasks:
     - name: Creating a new folder with the current date
       ansible.windows.win_file:
       # Create a new folder with the current date
-          path: D:\Test\{{ date }}
+          path: {{ dest_path }}\{{ date }}
           state: directory
-      register: dest_dir
       tags:
       - Create_Folder
 
     - name: Copying the specified contents using Fastcopy cmd (win_command)
       ansible.windows.win_command:
-      # Specify the install_path on Variables in AWX before running
-        cmd: C:\Users\itsupport\FastCopy\fcp.exe /cmd=diff /speed=full /no_confirm_stop /force_start "{{ src_path }}" /to="D:\Test\{{ date }}"
+        cmd: C:\Users\itsupport\FastCopy\fcp.exe /cmd=diff /speed=full /no_confirm_stop /force_start /log "{{ src_path }}" /to="{{ dest_path }}\{{ date }}"
       become: true
       become_method: runas
       become_flags: logon_type=new_credentials logon_flags=netcredentials_only
