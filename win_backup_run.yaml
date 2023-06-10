@@ -12,3 +12,13 @@
           state: directory
       tags:
       - Create_Folder
+
+    - name: Copying the specified contents using Fastcopy cmd (win_command)
+      ansible.windows.win_command:
+      # Specify the install_path on Variables in AWX before running
+        cmd: C:\Users\itsupport\FastCopy\fcp.exe /cmd=diff /speed=full /no_confirm_stop /force_start `"{{C:\MSI\}}`" /to=`"{{D:\Test\{{ date }}\}}`"
+      # become: true
+      # become_method: runas
+      # become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+      tags:
+      - Copy
