@@ -5,12 +5,12 @@
   vars:
         date: "{{ lookup('pipe', 'date +%b%d') }}"
         src_path: \\192.168.56.16\Scratch\Scratch\New folder\MSI\
-        dest_path: D:\Test
+        dest_path: D:\Test\
   tasks:
     - name: Creating a new folder with the current date
       ansible.windows.win_file:
       # Create a new folder with the current date
-          path: "{{ dest_path }}"\"{{ date }}"
+          path: "{{ dest_path }}{{ date }}"
           state: directory
       tags:
       - Create_Folder
