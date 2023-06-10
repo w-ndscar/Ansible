@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: false
   vars:
-        date: "{{ lookup('pipe', 'date +%MMM%d') }}"
+        date: "{{ lookup('pipe', 'date +%b%d') }}"
   tasks:
     - name: Creating a new folder with the current date
       ansible.windows.win_file:
