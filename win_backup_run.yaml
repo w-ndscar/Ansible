@@ -11,13 +11,14 @@
       # Create a new folder with the current date
           path: D:\Test\{{ date }}
           state: directory
+      register: dest_dir
       tags:
       - Create_Folder
 
     - name: Copying the specified contents using Fastcopy cmd (win_command)
       ansible.windows.win_command:
       # Specify the install_path on Variables in AWX before running
-        cmd: C:\Users\itsupport\FastCopy\fcp.exe /cmd=diff /speed=full /no_confirm_stop /force_start `"{{ src_path }}`" /to=`"{{ path }}`"
+        cmd: C:\Users\itsupport\FastCopy\fcp.exe /cmd=diff /speed=full /no_confirm_stop /force_start "{{ src_path }}" /to="{{ dest_dir.path }}"
       become: true
       become_method: runas
       become_flags: logon_type=new_credentials logon_flags=netcredentials_only
