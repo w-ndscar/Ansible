@@ -12,10 +12,18 @@
     - name: Creating a new folder with the current date
       ansible.windows.win_file:
       # Create a new folder with the current date
-          path: "{{ dest_path }}{{ date }}"
+          path: "{{ dest_path1 }}{{ date }}"
           state: directory
       tags:
-      - Create_Folder
+      - Create_Folder1
+
+    - name: Creating a new folder with the current date
+      ansible.windows.win_file:
+      # Create a new folder with the current date
+          path: "{{ dest_path2 }}{{ date }}"
+          state: directory
+      tags:
+      - Create_Folder2
 
     - name: One - Copying the specified contents using Fastcopy cmd (win_command)
       ansible.windows.win_command:
