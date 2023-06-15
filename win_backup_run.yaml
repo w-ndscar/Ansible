@@ -17,7 +17,7 @@
 
     - name: Copying the specified contents using Fastcopy cmd (win_command)
       ansible.windows.win_command:
-        cmd: C:\Users\itsupport\FastCopy\fcp.exe /cmd=diff /speed=full /no_confirm_stop /force_start /log "{{ src_path }}" /to="{{ dest_path }}\{{ date }}"
+        cmd: C:\Users\itsupport\FastCopy\fcp.exe /cmd=diff /speed=full /no_confirm_stop /force_start /log "{{ src_path }}" /to="{{ dest_path }}{{ date }}"
       become: true
       become_method: runas
       become_flags: logon_type=new_credentials logon_flags=netcredentials_only
