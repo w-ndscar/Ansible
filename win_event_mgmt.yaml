@@ -2,8 +2,8 @@
 - name: win_reboot_msg
   hosts: all
   gather_facts: false
-  collections:
-    - community.windows
+  #collections:
+  # - community.windows
   tasks:
     - name: Clear event entries for Application Log
       win_eventlog:
