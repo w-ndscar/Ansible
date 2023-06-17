@@ -1,9 +1,0 @@
----
-- name: win_shutdown_comm
-  hosts: all
-  gather_facts: false
-  tasks:
-    - name: Shutdown with a message using Community module
-      community.general.shutdown:
-        delay: 60
-        msg: The PC is going to shutdown in 1 minute. Please save and close all the Applications and Sign Out
