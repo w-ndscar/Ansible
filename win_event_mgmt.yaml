@@ -8,6 +8,19 @@
     - name: Clear event entries for Application Log
       win_eventlog:
         name: Application
+        source: Application
         state: clear
       tags:
       - Application_Clear
+
+    - name: Add a new event
+      win_eventlog_entry:
+        name: Application
+        source: Application
+        eventid: 5555
+        message: This is a test from Ansible
+        entry_type: Error
+        category: 5
+        raw_data: 10,20
+      tags:
+      - Application_Entry
