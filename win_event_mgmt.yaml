@@ -1,0 +1,11 @@
+---
+- name: win_reboot_msg
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Clear event entries for Application Log
+      community.windows.win_eventlog:
+        name: Application
+        state: clear
+      tags:
+      - Application_Clear
