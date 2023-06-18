@@ -10,7 +10,8 @@
       async: 45
       poll: 5
     
-    - name: Delete Test key
+    # Delete the Test value
+    - name: Delete Test value
       ansible.windows.win_regedit:
         path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate
         name: Test
