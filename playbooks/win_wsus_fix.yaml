@@ -26,12 +26,14 @@
       ansible.windows.win_regedit:
         path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate
         name: SusClientId
+        type: string
         state: absent
     
     - name: Deleting the SusClientIDValidation value from path
       ansible.windows.win_regedit:
         path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate
         name: SusClientIDValidation
+        type: binary
         state: absent
 
     - name: Starting Windows Update service
@@ -43,10 +45,14 @@
     
     - name: Reset Auth and Detect
       ansible.windows.win_command:
-        cmd: wuauclt.exe /resetauthorization /detectnow
+        cmd: 'wuauclt "/resetauthorization" "/detectnow"'
+
+    - name: Shell Update Command
+      ansible.windows.win_shell: |
+        $updateSession = new-object -com "Microsoft.Update.Session"; $updates=$updateSession.CreateupdateSearcher().Search($criteria).Updates
 
     - name: Reporting back to WSUS
       ansible.windows.win_command:
-        cmd: wuauclt /reportnow
+        cmd: 'wuauclt "/reportnow"'
 
 
