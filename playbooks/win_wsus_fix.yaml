@@ -47,12 +47,16 @@
       ansible.windows.win_command:
         cmd: 'wuauclt "/resetauthorization" "/detectnow"'
 
-    #- name: Shell Update Command
-    #  ansible.windows.win_shell: |
-    #    $updateSession = new-object -com "Microsoft.Update.Session"; $updates=$updateSession.CreateupdateSearcher().Search($criteria).Updates
-
-    - name: Reporting back to WSUS
+    - name: Detecting and Reporting back to WSUS
       ansible.windows.win_command:
-        cmd: 'wuauclt "/reportnow"'
+        cmd: 'wuauclt "/detectnow" "/reportnow"'
+
+    - name: Detecting and Reporting back to WSUS
+      ansible.windows.win_command:
+        cmd: 'wuauclt "/detectnow" "/reportnow"'
+    
+    - name: Detecting and Reporting back to WSUS
+      ansible.windows.win_command:
+        cmd: 'wuauclt "/detectnow" "/reportnow"'
 
 

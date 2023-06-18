@@ -1,0 +1,32 @@
+---
+- name: win_wsus_detect_report
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Stopping Windows Update service
+      ansible.windows.win_service:
+        name: wuauserv
+        state: stopped
+      async: 45
+      poll: 5
+    
+    - name: Starting Windows Update service
+      ansible.windows.win_service:
+        name: wuauserv
+        state: started
+      async: 45
+      poll: 5
+    
+    - name: Detecting and Reporting back to WSUS
+      ansible.windows.win_command:
+        cmd: 'wuauclt "/detectnow" "/reportnow"'
+
+    - name: Detecting and Reporting back to WSUS
+      ansible.windows.win_command:
+        cmd: 'wuauclt "/detectnow" "/reportnow"'
+    
+    - name: Detecting and Reporting back to WSUS
+      ansible.windows.win_command:
+        cmd: 'wuauclt "/detectnow" "/reportnow"'
+
+
