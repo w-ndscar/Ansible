@@ -6,12 +6,12 @@
     - name: Display a message (Reboot message)
       community.windows.win_msg:
         display_seconds: 240
-        msg: Weekly Restart Notice -> The PC going to restart in 30 minutes. Please ensure to Save and Close all the applications and Sign out
+        msg: Weekly System Restart Reminder - In accordance with our work-from-home guidelines, a weekly system restart is a mandatory procedure to ensure optimal performance and functionality of your device. The PC is scheduled for automatic restart in 30 minutes. Please ensure to save and close all the applications and Sign out.
       
     - name: Display a toast message (Reboot message)
       community.windows.win_toast:
         expire: 240
-        title: Weekly Restart Notice
-        msg: Weekly Restart Notice -> The PC going to restart in 30 minutes. Please ensure to Save and Close all the applications and Sign out
+        title: In accordance with our work-from-home guidelines, a weekly system restart is a mandatory procedure to ensure optimal performance and functionality of your device.\n The PC is scheduled for automatic restart in 30 minutes. Please ensure to save and close all the applications and Sign out.
+        msg: Weekly System Restart Reminder
       async: 60
       poll: 0
