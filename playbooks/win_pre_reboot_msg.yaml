@@ -1,0 +1,17 @@
+---
+- name: win_reboot_msg
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Display a message (Reboot message)
+      community.windows.win_msg:
+        display_seconds: 60
+        msg: Weekly Restart Notice -> The PC going to restart in 30 minutes. Please ensure to Save and Close all the applications and Sign out
+      
+    - name: Display a toast message (Reboot message)
+      community.windows.win_toast:
+        expire: 60
+        title: Restart
+        msg: Weekly Restart Notice -> The PC going to restart in 30 minutes. Please ensure to Save and Close all the applications and Sign out
+      async: 60
+      poll: 0
