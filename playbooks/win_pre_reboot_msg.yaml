@@ -8,17 +8,16 @@
         start_sound_path: C:\Windows\Media\Windows Exclamation.wav
         msg: Weekly System Restart Reminder
         end_sound_path: C:\Windows\Media\Windows Message Nudge.wav
-        voice: Microsoft David Desktop
 
     - name: Display a message (Reboot message)
       community.windows.win_msg:
         display_seconds: 240
-        msg: "Reminder: Weekly system restart required for optimal performance. PC will restart in 30 mins. Save and close applications, sign out. Thank you!"
+        msg: "Reminder: Weekly system restart required for optimal performance. PC will restart in 30 minutes. Please Save and close applications and sign out. Thank you!"
       
     - name: Display a toast message (Reboot message)
       community.windows.win_toast:
         expire: 240
-        title: Weekly system restart required for optimal performance. PC will restart in 30 mins. Save and close applications, sign out. Thank you!
+        title: Weekly system restart required for optimal performance. PC will restart in 30 minutes. Please Save and close applications and sign out. Thank you!
         msg: Weekly System Restart Reminder
       async: 60
       poll: 0
