@@ -1,5 +1,5 @@
 ---
-- name: win_wsus_fix
+- name: Registry fix for WSUS Clients
   hosts: all
   gather_facts: false
   tasks:

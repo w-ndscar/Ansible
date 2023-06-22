@@ -1,5 +1,5 @@
 ---
-- name: win_wsus_detect_report
+- name: WSUS - Detect and Report commands
   hosts: all
   gather_facts: false
   tasks:
