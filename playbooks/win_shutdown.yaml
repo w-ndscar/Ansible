@@ -1,5 +1,5 @@
 ---
-- name: Execute custom CMD command on Windows hosts
+- name: shutdown all the specified hosts
   hosts: all
   gather_facts: false
   tasks:

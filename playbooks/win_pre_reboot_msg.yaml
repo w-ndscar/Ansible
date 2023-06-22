@@ -1,5 +1,5 @@
 ---
-- name: win_reboot_msg
+- name: Display a message and a notification before restarting
   hosts: all
   gather_facts: false
   tasks:

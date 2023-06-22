@@ -1,5 +1,5 @@
 ---
-- name: win_reboot_msg
+- name: Windows Event Management
   hosts: all
   gather_facts: false
   #collections:
