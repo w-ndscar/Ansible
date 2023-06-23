@@ -1,0 +1,15 @@
+---
+- name: Install MSI using cmd
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Silent install PDF Sam MSI using cmd (win_command)
+      ansible.windows.win_command:
+      # Specify the install_path on Variables in AWX before running
+        cmd: '{{ install_path }}\Setup.exe -i install -q' 
+      become: true
+      become_method: runas
+      become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+      tags:
+      - Autodesk_DC
+      
