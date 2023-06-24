@@ -7,4 +7,4 @@
       ansible.windows.win_reboot:
       # Caution: This play restarts all the specified hosts.
         msg: "Double Check. The PC will reboot in 30 minutes. Please click Close on this dialog and Save and close all the applications and Sign out"
-        pre_reboot_delay: 60
+        pre_reboot_delay: 1800
