@@ -29,3 +29,12 @@
         arguments: /q /norestart
       tags:
       - Foxit
+
+    - name: Silent install GLPI Agent MSI using win_package from the specified UNC path
+      ansible.windows.win_package:
+      # Specify the install_path on Variables in AWX before running
+        path: '{{ install_path }}\GLPI_Agent_x64.msi'
+        state: present
+        arguments: /q /norestart
+      tags:
+      - GLPI_Agent
