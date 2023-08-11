@@ -2,8 +2,7 @@
 - name: Install MSI using win_package module (UNC)
   hosts: all
   gather_facts: false
-  become: true
-  become_method: runas
+  become: false
 
   tasks:
     - name: Silent install PDF Sam MSI using win_package from the specified UNC path
