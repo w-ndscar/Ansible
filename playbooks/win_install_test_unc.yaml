@@ -29,10 +29,11 @@
         state: present
         arguments: /q /norestart
         become: true
+        become_method: runas
+        become_flags: logon_type=new_credential logon_flags=netcredentials_only
         vars:
-          ansible_become_method: runas
-          ansible_become_user: "{{ pass1_user }}"
-          ansible_become_pass: "{{ pass1_pwd }}"
+          ansible_become_user: {{ pass1_user }}
+          ansible_become_password: {{ pass1_pwd }}
       tags:
       - Foxit
 
