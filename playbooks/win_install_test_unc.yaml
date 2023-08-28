@@ -8,7 +8,7 @@
   vars:
     ansible_become_user: '{{ pass1_user }}'
     ansible_become_password: '{{ pass1_pwd }}'
-    
+  
   tasks:
     - name: Silent install PDF Sam MSI using win_package from the specified UNC path
       ansible.windows.win_package:
