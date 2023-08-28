@@ -30,7 +30,7 @@
         arguments: /q /norestart
       become: true
       become_method: runas
-      become_flags: logon_type=new_credential logon_flags=netcredentials_only
+      become_flags: logon_type=new_credentials logon_flags=netcredentials_only
       vars:
         ansible_become_user: '{{ pass1_user }}'
         ansible_become_password: '{{ pass1_pwd }}'
