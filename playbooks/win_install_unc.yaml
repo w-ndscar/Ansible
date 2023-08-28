@@ -42,7 +42,7 @@
       # Specify the install_path on Variables in AWX before running
         path: '{{ install_path }}\AutodeskDesignReview\x86\ADR\SetupDesignReview.msi'
         state: present
-        arguments: ADSK_DESKTOPSHORTCUT_1=1 /quiet /log %TEMP%\ADR_log.log
+        arguments: /quiet /norestart
       tags:
       - Design_Review
 
