@@ -18,7 +18,8 @@
         arguments: /qb /norestart CHECK_FOR_UPDATES=false DONATE_NOTIFICATION=false SKIPTHANKSPAGE=Yes
       tags:
       - PDF_Sam
-    
+      ignore_errors: true
+
     - name: Silent install Google Chrome MSI using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
@@ -27,6 +28,7 @@
         arguments: /q /norestart
       tags:
       - Google_Chrome
+      ignore_errors: true
 
     - name: Silent install Foxit Reader MSI using win_package from the specified UNC path
       ansible.windows.win_package:
@@ -36,6 +38,7 @@
         arguments: /q /norestart
       tags:
       - Foxit
+      ignore_errors: true
 
     - name: Silent install Autodesk Design Review using win_package from the specified UNC path
       ansible.windows.win_package:
@@ -45,6 +48,7 @@
         arguments: /quiet /norestart
       tags:
       - Design_Review
+      ignore_errors: true
 
     - name: Silent install Apache OpenOffice using win_package from the specified UNC path
       ansible.windows.win_package:
@@ -54,3 +58,4 @@
         arguments: /wait /qn /norestart
       tags:
       - OpenOffice
+      ignore_errors: true
