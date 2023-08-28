@@ -37,11 +37,11 @@
       tags:
       - Foxit
 
-    - name: Silent install GLPI Agent MSI using win_package from the specified UNC path
+    - name: Silent install Autodesk Design Review using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
-        path: '{{ install_path }}\GLPI_Agent_x64.msi'
+        path: '{{ install_path }}\AutodeskDesignReview\x86\ADR\SetupDesignReview.msi'
         state: present
-        arguments: /q /norestart
+        arguments: ADSK_DESKTOPSHORTCUT_1=1 /quiet /log %TEMP%\ADR_log.log
       tags:
-      - GLPI_Agent
+      - Design_Review
