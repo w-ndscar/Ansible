@@ -55,7 +55,7 @@
       # Specify the install_path on Variables in AWX before running
         path: '{{ install_path }}\OpenOffice_4.1.13\openoffice4113.msi'
         state: present
-        arguments: /wait /qn /norestart
+        arguments: /qn /norestart
       tags:
       - OpenOffice
       ignore_errors: true
