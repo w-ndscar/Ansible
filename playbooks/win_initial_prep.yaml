@@ -5,40 +5,13 @@
   become: false
 
   tasks:
-    - name: Rename the PC and add to domain
+    - name: Add host to the Domain
+      ansible.windows.win_domain_membership:
+          dns_domain_name: '{{ domain_name }}'
+          domain_admin_user: '{{ pass1_user }}'
+          domain_admin_password: '{{ pass1_pwd }}'
+          state: domain
+      register: domain_state
 
-    - name: Silent install PDF Sam MSI using win_package from the specified UNC path
-      ansible.windows.win_package:
-      # Specify the install_path on Variables in AWX before running
-        path: '{{ install_path }}\pdfsam-5.1.1.msi'
-        state: present
-        arguments: /qb /norestart CHECK_FOR_UPDATES=false DONATE_NOTIFICATION=false SKIPTHANKSPAGE=Yes
-      tags:
-      - PDF_Sam
-    
-    - name: Silent install Google Chrome MSI using win_package from the specified UNC path
-      ansible.windows.win_package:
-      # Specify the install_path on Variables in AWX before running
-        path: '{{ install_path }}\googlechromestandaloneenterprise64.msi'
-        state: present
-        arguments: /q /norestart
-      tags:
-      - Google_Chrome
-
-    - name: Silent install Foxit Reader MSI using win_package from the specified UNC path
-      ansible.windows.win_package:
-      # Specify the install_path on Variables in AWX before running
-        path: '{{ install_path }}\FoxitPDFReader121_enu_Setup.msi'
-        state: present
-        arguments: /q /norestart
-      tags:
-      - Foxit
-
-    - name: Silent install GLPI Agent MSI using win_package from the specified UNC path
-      ansible.windows.win_package:
-      # Specify the install_path on Variables in AWX before running
-        path: '{{ install_path }}\GLPI_Agent_x64.msi'
-        state: present
-        arguments: /q /norestart
-      tags:
-      - GLPI_Agent
+      ansible.windows.win_reboot:
+        when: domain_state.reboot_required

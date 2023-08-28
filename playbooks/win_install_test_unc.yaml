@@ -2,7 +2,13 @@
 - name: Install MSI using win_package module (UNC)
   hosts: all
   gather_facts: false
-
+  become: true
+  become_method: runas
+  become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+  vars:
+    ansible_become_user: '{{ pass1_user }}'
+    ansible_become_password: '{{ pass1_pwd }}'
+    
   tasks:
     - name: Silent install PDF Sam MSI using win_package from the specified UNC path
       ansible.windows.win_package:
@@ -28,12 +34,6 @@
         path: '{{ install_path }}\FoxitPDFReader121_enu_Setup.msi'
         state: present
         arguments: /q /norestart
-      become: true
-      become_method: runas
-      become_flags: logon_type=new_credentials logon_flags=netcredentials_only
-      vars:
-        ansible_become_user: '{{ pass1_user }}'
-        ansible_become_password: '{{ pass1_pwd }}'
       tags:
       - Foxit
 
