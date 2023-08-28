@@ -2,7 +2,11 @@
 - name: Install MSI using win_package module (UNC)
   hosts: all
   gather_facts: false
-  become: false
+  become: true
+  vars:
+    ansible_become_method: runas
+    ansible_become_user: "{{ pass1_user }}"
+    ansible_become_pass: "{{ pass1_pwd }}"
 
   tasks:
     - name: Silent install PDF Sam MSI using win_package from the specified UNC path
