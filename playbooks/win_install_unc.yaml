@@ -60,8 +60,8 @@
       - LibreOffice
       ignore_errors: true
 
-    - name: Silent install PDF Sam MSI using cmd (win_command)
-      ansible.windows.win_command:
+    - name: Silent install Bitdefender using cmd (win_command)
+      ansible.windows.win_shell:
       # Specify the install_path on Variables in AWX before running
         cmd: '{{ install_path }}\Bitdefender\epskit_x64.exe /bdparams /silent'
       tags:
