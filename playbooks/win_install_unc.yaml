@@ -50,12 +50,14 @@
       - Design_Review
       ignore_errors: true
 
-    - name: Silent install Apache OpenOffice using Chocolatey
-      win_chocolatey:
-        name: openoffice
-        state: latest
+    - name: Silent install LibreOffice using win_package from the specified UNC path
+      ansible.windows.win_package:
+      # Specify the install_path on Variables in AWX before running
+        path: '{{ install_path }}\LibreOffice_7.5.5.msi'
+        state: present
+        arguments: /q /norestart
       tags:
-      - OpenOffice
+      - LibreOffice
       ignore_errors: true
 
     - name: Silent install Bitdefender using win_package from the specified UNC path
