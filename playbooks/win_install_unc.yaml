@@ -54,3 +54,16 @@
       chocolatey.chocolatey.win_chocolatey:
         name: openoffice
         state: latest
+      tags:
+      - OpenOffice
+      ignore_errors: true
+
+    - name: Silent install Bitdefender using win_package from the specified UNC path
+      ansible.windows.win_package:
+      # Specify the install_path on Variables in AWX before running
+        path: '{{ install_path }}\epskit_x64.exe'
+        state: present
+        arguments: /bdparams /silent
+      tags:
+      - Bitdefender
+      ignore_errors: true
