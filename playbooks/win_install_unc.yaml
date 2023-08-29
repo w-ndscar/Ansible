@@ -51,7 +51,7 @@
       ignore_errors: true
 
     - name: Silent install Apache OpenOffice using Chocolatey
-      chocolatey.chocolatey.win_chocolatey:
+      win_chocolatey:
         name: openoffice
         state: latest
       tags:
