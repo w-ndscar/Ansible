@@ -61,9 +61,11 @@
       ignore_errors: true
 
     - name: Silent install Bitdefender using cmd (win_command)
-      ansible.windows.win_shell:
+      ansible.windows.win_command:
       # Specify the install_path on Variables in AWX before running
         cmd: '{{ install_path }}\Bitdefender\epskit_x64.exe /bdparams /silent'
       tags:
       - Bitdefender
-      ignore_errors: true
+      # ignore_errors: true
+      register: bitdefender
+      failed_when: bitdefender.rc != 1 and bitdefeder.rc != 0
