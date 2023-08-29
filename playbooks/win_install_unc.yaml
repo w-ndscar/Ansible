@@ -50,12 +50,7 @@
       - Design_Review
       ignore_errors: true
 
-    - name: Silent install Apache OpenOffice using win_package from the specified UNC path
-      ansible.windows.win_package:
-      # Specify the install_path on Variables in AWX before running
-        path: '{{ install_path }}\OpenOffice_4.1.13\openoffice4113.msi'
-        state: present
-        arguments: /qn /norestart
-      tags:
-      - OpenOffice
-      ignore_errors: true
+    - name: Silent install Apache OpenOffice using Chocolatey
+      chocolatey.chocolatey.win_chocolatey:
+        name: openoffice
+        state: latest
