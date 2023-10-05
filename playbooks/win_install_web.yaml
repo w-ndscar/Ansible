@@ -1,5 +1,5 @@
 ---
-- name: Install MSI using win_package module
+- name: Install applications from the Web
   hosts: all
   gather_facts: false
   tasks:
@@ -8,3 +8,14 @@
         path: https://github.com/torakiki/pdfsam/releases/download/v5.1.2/pdfsam-5.1.2.msi
         state: present
         arguments: /qb /norestart CHECK_FOR_UPDATES=false DONATE_NOTIFICATION=false SKIPTHANKSPAGE=Yes
+      tags:
+        - PDF_Sam
+      ignore_errors: true
+
+    - name: Install Store App Outlook for Windows (New) using Winget
+      ansible.windows.win_command:
+        cmd: winget install 9NRX63209R7B --accept-source-agreements --accept-package-agreements
+      tags:
+        - Outlook_Winget
+      ignore_errors: true
+  

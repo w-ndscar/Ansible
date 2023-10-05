@@ -9,3 +9,4 @@
         msg: "Double Check. The PC will reboot in 30 minutes. Please click Close on this dialog and Save and close all the applications and Sign out"
         pre_reboot_delay: 1800
         reboot_timeout: 2400
+      ignore_errors: true
