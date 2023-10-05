@@ -14,7 +14,7 @@
 
     - name: Install Store App Outlook for Windows (New) using Winget
       ansible.windows.win_command:
-        cmd: winget install 9NRX63209R7B --source winget --accept-source-agreements --accept-package-agreements
+        cmd: winget install 9NRX63209R7B --source msstore -h --force --accept-source-agreements --accept-package-agreements --scope machine
       tags:
         - Outlook_Winget
 
