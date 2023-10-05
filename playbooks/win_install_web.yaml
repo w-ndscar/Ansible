@@ -10,12 +10,12 @@
         arguments: /qb /norestart CHECK_FOR_UPDATES=false DONATE_NOTIFICATION=false SKIPTHANKSPAGE=Yes
       tags:
         - PDF_Sam
-      ignore_errors: true
+
 
     - name: Install Store App Outlook for Windows (New) using Winget
       ansible.windows.win_command:
         cmd: winget install 9NRX63209R7B --source winget --accept-source-agreements --accept-package-agreements
       tags:
         - Outlook_Winget
-      ignore_errors: true
+
   
