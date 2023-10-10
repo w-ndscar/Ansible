@@ -89,7 +89,7 @@
               $text = $_.Groups[2].Value
               Write-Host $text
 
-              if($text -match "_(x86|x64|neutral).*appx(|bundle)$") {
+              if($text -match "_(x64).*msix(|bundle)$") {
                   $downloadFile = Join-Path $downloadFolder $text
                   if(!(Test-Path $downloadFile)) {
                       Invoke-WebRequest -Uri $url -OutFile $downloadFile
@@ -97,10 +97,21 @@
               }
           }
 
+          cd $downloadFolder
+          Add-AppxPackage (Get-Item .\Microsoft.OutlookForWindows*.msix)
+
       tags:
         - OFW
       ignore_errors: true
 
+    - name: Silent install Outlook for Windows using win_package
+      ansible.windows.win_package:
+      # Specify the install_path on Variables in AWX before running
+        cmd: '{{ install_path }}\Outlook_for_Windows.msix'
+      tags:
+      - OFW2
+      # ignore_errors: true
+    
     - name: Silent install Bitdefender using cmd (win_command)
       ansible.windows.win_command:
       # Specify the install_path on Variables in AWX before running
