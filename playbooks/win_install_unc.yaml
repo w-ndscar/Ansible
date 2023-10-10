@@ -60,6 +60,13 @@
       - LibreOffice
       ignore_errors: true
 
+    - name: Silent install Outlook for Windows using win_powershell from the specified UNC path
+      ansible.windows.win_powershell:
+      # Specify the install_path on Variables in AWX before running
+        script: |
+          Add-AppxPackage '{{ install_path }}'\Outlook_for_Windows.appx
+      ignore_errors: true
+
     - name: Silent install Bitdefender using cmd (win_command)
       ansible.windows.win_command:
       # Specify the install_path on Variables in AWX before running
