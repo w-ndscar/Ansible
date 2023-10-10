@@ -98,10 +98,12 @@
           }
 
           cd $downloadFolder
-          Add-AppxPackage (Get-Item .\Microsoft.OutlookForWindows*.msix)
+          $packPath = Get-Item Microsoft.OutlookForWindows*.msix
+
+          DISM.EXE /Online /Add-ProvisionedAppxPackage /PackagePath:$packPath /SkipLicense
 
       tags:
-        - OFW
+        - OFW_Machine
       ignore_errors: true
 
     - name: Silent install Outlook for Windows using win_package
@@ -110,7 +112,7 @@
         path: '{{ install_path }}\Outlook_for_Windows.appx'
         state: present
       tags:
-        - OFW2
+        - OFW_User
       ignore_errors: true
   
     - name: Silent install Bitdefender using cmd (win_command)
