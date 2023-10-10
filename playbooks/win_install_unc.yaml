@@ -64,7 +64,9 @@
       ansible.windows.win_powershell:
       # Specify the install_path on Variables in AWX before running
         script: |
-          Add-AppxPackage '{{ install_path }}'\Outlook_for_Windows.appx
+          Add-AppxPackage "'{{ install_path }}'\Outlook_for_Windows.appx"
+        tags:
+        - OFW
       ignore_errors: true
 
     - name: Silent install Bitdefender using cmd (win_command)
