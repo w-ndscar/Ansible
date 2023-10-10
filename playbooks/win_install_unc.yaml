@@ -109,15 +109,15 @@
       # Specify the install_path on Variables in AWX before running
         cmd: '{{ install_path }}\Outlook_for_Windows.msix'
       tags:
-      - OFW2
-      # ignore_errors: true
-    
+        - OFW2
+      ignore_errors: true
+  
     - name: Silent install Bitdefender using cmd (win_command)
       ansible.windows.win_command:
       # Specify the install_path on Variables in AWX before running
         cmd: '{{ install_path }}\Bitdefender\epskit_x64.exe /bdparams /silent'
       tags:
-      - Bitdefender
+        - Bitdefender
       # ignore_errors: true
       register: bitdefender
       failed_when: bitdefender.rc != 1 and bitdefeder.rc != 0
