@@ -107,7 +107,8 @@
     - name: Silent install Outlook for Windows using win_package
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
-        cmd: '{{ install_path }}\Outlook_for_Windows.msix'
+        path: '{{ install_path }}\Outlook_for_Windows.msix'
+        state: present
       tags:
         - OFW2
       ignore_errors: true
