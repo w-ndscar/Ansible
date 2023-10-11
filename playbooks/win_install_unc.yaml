@@ -66,7 +66,9 @@
         script: |
           $apiUrl = "https://store.rg-adguard.net/api/GetFiles"
 
-          $productUrl = "https://www.microsoft.com/store/productId/9NRX63209R7B" # Outlook for Windows
+          $productUrl = "https://www.microsoft.com/store/productId/{{ app_id }}" # Specify the app id
+          #$productUrl = "https://www.microsoft.com/store/productId/9NRX63209R7B" # Outlook for Windows
+          #$productUrl = "https://www.microsoft.com/store/productId/9NBLGGH4NNS1" # App Installer
 
           $downloadFolder = Join-Path $env:TEMP "StoreDownloads"
           if(!(Test-Path $downloadFolder -PathType Container)) {
