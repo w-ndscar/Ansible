@@ -122,8 +122,8 @@
       ansible.windows.win_powershell:
       # Specify the install_path on Variables in AWX before running
         script: |
-          $packPath = {{ install_path }}\Outlook_for_Windows.appx
-          DISM.EXE /Online /Add-ProvisionedAppxPackage /PackagePath:$packPath /SkipLicense
+          $PackagePath = {{ install_path }}\Outlook_for_Windows.appx
+          DISM.EXE /Online /Add-ProvisionedAppxPackage /PackagePath:"$PackagePath" /SkipLicense
         
       tags:
         - OFW_Machine2
