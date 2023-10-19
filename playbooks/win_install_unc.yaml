@@ -55,7 +55,7 @@
       # Specify the install_path on Variables in AWX before running
         path: '{{ install_path }}\Autodesk\Addons\Diroots_Prosheet\ProSheets_12130.exe'
         state: present
-        arguments: /i /qn /norestart
+        arguments: /i // /qn accept_eula=1
       tags:
       - Prosheets
       ignore_errors: true
