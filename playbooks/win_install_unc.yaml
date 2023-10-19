@@ -118,6 +118,17 @@
         - OFW_Machine
       ignore_errors: true
 
+    - name: Silent install Outlook for Windows using win_powershell from the specified UNC path
+      ansible.windows.win_powershell:
+      # Specify the install_path on Variables in AWX before running
+        script: |
+          $packPath = {{ install_path }}\Outlook_for_Windows.appx
+          DISM.EXE /Online /Add-ProvisionedAppxPackage /PackagePath:$packPath /SkipLicense
+        
+      tags:
+        - OFW_Machine2
+      ignore_errors: true
+
     - name: Silent install Outlook for Windows using win_package
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
