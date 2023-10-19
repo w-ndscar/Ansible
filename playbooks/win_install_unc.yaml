@@ -50,6 +50,16 @@
       - Design_Review
       ignore_errors: true
 
+    - name: Silent install Autodesk Diroots ProSheets Addin using win_package from the specified UNC path
+      ansible.windows.win_package:
+      # Specify the install_path on Variables in AWX before running
+        path: '{{ install_path }}\Autodesk\Addons\Diroots_Prosheet\ProSheets_12130.exe'
+        state: present
+        arguments: /i /qn /norestart
+      tags:
+      - Prosheets
+      ignore_errors: true
+
     - name: Silent install LibreOffice using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
