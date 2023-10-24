@@ -30,6 +30,16 @@
       - Google_Chrome
       ignore_errors: true
 
+    - name: Silent install Firefox MSI using win_package from the specified UNC path
+      ansible.windows.win_package:
+      # Specify the install_path on Variables in AWX before running
+        path: '{{ install_path }}\Firefox_Setup_118.0.2.msi'
+        state: present
+        arguments: /q /norestart
+      tags:
+      - Firefox
+      ignore_errors: true
+
     - name: Silent install Foxit Reader MSI using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
@@ -76,6 +86,7 @@
         script: |
           $apiUrl = "https://store.rg-adguard.net/api/GetFiles"
 
+          #$productUrl = "https://apps.microsoft.com/detail/{{ app_id }}?hl=en-us&gl=US"
           $productUrl = "https://www.microsoft.com/store/productId/{{ app_id }}" # Specify the app id
           #$productUrl = "https://www.microsoft.com/store/productId/9NRX63209R7B" # Outlook for Windows
           #$productUrl = "https://www.microsoft.com/store/productId/9NBLGGH4NNS1" # App Installer
