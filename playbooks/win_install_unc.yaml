@@ -80,6 +80,16 @@
       - LibreOffice
       ignore_errors: true
 
+    - name: Silent install ONLYOffice using win_package from the specified UNC path
+      ansible.windows.win_package:
+      # Specify the install_path on Variables in AWX before running
+        path: '{{ install_path }}\DesktopEditors_x64.msi'
+        state: present
+        arguments: /q /norestart
+      tags:
+      - OnlyOffice
+      ignore_errors: true
+
     - name: Silent install Outlook for Windows using win_powershell from the specified UNC path
       ansible.windows.win_powershell:
       # Specify the install_path on Variables in AWX before running
