@@ -8,12 +8,16 @@
       script: |
         # Get and store the values
         $computerSystem = Get-WmiObject -Class Win32_ComputerSystem
+        $sysinfo = Get-WmiObject -Class Win32_BIOS
         $model = $computerSystem.Model
         $manufacturer = $computerSystem.Manufacturer
-        $key = (Get-WmiObject -query "select * from SoftwareLicensingService").OA3xOriginalProductKey
+        $serial = $sysinfo.SerialNumber
+        #$key = (Get-WmiObject -query "select * from SoftwareLicensingService").OA3xOriginalProductKey
+        $key = wmic path softwarelicensingservice get OA3xOriginalProductKey
 
         #Display the values
         Write-Output "Computer Name: $env:COMPUTERNAME"
         Write-Output "Computer Model: $model"
         Write-Output "Manufacturer: $manufacturer"
+        Write-Output "Serial/Service Tag: $serial"
         Write-Output "Windows Key: $key"
