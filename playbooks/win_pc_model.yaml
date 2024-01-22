@@ -6,14 +6,14 @@
   - name: Find PC Model, Serial number and OS Key
     ansible.windows.win_powershell:
       script: |
-      # Get and store the values
-      $computerSystem = Get-WmiObject -Class Win32_ComputerSystem
-      $model = $computerSystem.Model
-      $manufacturer = $computerSystem.Manufacturer
-      $key = (Get-WmiObject -query "select * from SoftwareLicensingService").OA3xOriginalProductKey
+        # Get and store the values
+        $computerSystem = Get-WmiObject -Class Win32_ComputerSystem
+        $model = $computerSystem.Model
+        $manufacturer = $computerSystem.Manufacturer
+        $key = (Get-WmiObject -query "select * from SoftwareLicensingService").OA3xOriginalProductKey
 
-      #Display the values
-      Write-Output "Computer Name: $env:COMPUTERNAME"
-      Write-Output "Computer Model: $model"
-      Write-Output "Manufacturer: $manufacturer"
-      Write-Output "Windows Key: $key"
+        #Display the values
+        Write-Output "Computer Name: $env:COMPUTERNAME"
+        Write-Output "Computer Model: $model"
+        Write-Output "Manufacturer: $manufacturer"
+        Write-Output "Windows Key: $key"
