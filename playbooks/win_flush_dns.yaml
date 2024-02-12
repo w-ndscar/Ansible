@@ -1,0 +1,9 @@
+---
+- name: Flushing DNS
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Executing Flush DNS
+    # Caution: This command shuts down all the specified hosts.
+      ansible.windows.win_command:
+        cmd: ipconfig /flushdns
