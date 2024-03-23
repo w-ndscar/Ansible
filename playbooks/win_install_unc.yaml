@@ -170,9 +170,11 @@
       failed_when: bitdefender.rc != 1 and bitdefeder.rc != 0
 
     - name: Silent Install WorkTime Agent
-      ansible.windows.win_command:
+      ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
-        path: '{{ install_path }}\wta_agent_56_164.exe /silent'
+        path: '{{ install_path }}\wta_agent_56_164.exe'
+        state: present
+        # arguments: /i /q
       tags: 
         - WorkTime
       ignore_errors: true
