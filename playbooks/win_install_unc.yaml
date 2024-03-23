@@ -174,7 +174,7 @@
       # Specify the install_path on Variables in AWX before running
         path: '{{ install_path }}\wta_agent_56_164.exe'
         state: present
-        # arguments: /i /q
+        arguments: /i /silent /qn
       tags: 
         - WorkTime
       ignore_errors: true
