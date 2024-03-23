@@ -6,7 +6,7 @@
     - name: Silent install PDF Sam MSI using cmd (win_command)
       ansible.windows.win_command:
       # Specify the install_path on Variables in AWX before running
-        cmd: '{{ install_path }}\Setup.exe -i install --silent' 
+        cmd: '{{ install_path }}\Setup.exe --install_mode install --offline_mode true --silent' 
       become: true
       become_method: runas
       become_flags: logon_type=new_credentials logon_flags=netcredentials_only
