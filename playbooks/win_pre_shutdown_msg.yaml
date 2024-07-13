@@ -12,7 +12,7 @@
     - name: Display a Shutdown ttoast message
       community.windows.win_toast:
         expire: 240
-        title: Maintenance Alert: The PC is going to shutdown now. Please Save and close applications and sign out. Thank you!
+        title: Maintenance Alert! The PC is going to shutdown now. Please Save and close applications and sign out. Thank you!
         msg: Maintenace Alert
       async: 60
       poll: 0
