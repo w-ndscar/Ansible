@@ -1,0 +1,8 @@
+---
+- name: Sync Windows time all the specified hosts
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Executing time sync
+      ansible.windows.win_command:
+        cmd: w32tm /resync
