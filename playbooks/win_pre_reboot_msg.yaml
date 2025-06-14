@@ -6,13 +6,17 @@
     - name: Display a message (Reboot message)
       community.windows.win_msg:
         display_seconds: 240
-        msg: "Reminder: Weekly system restart required for optimal performance. PC will restart in 30 minutes. Please Save and close applications and sign out. Thank you!"
+        msg: "Urgent system restart is required for optimal performance. PC will restart in 30 minutes. Please Save and close the applications and sign out. Thank you!"
       ignore_errors: true
+
+    - name: Display reboot message
+      community.windows.win_reboot:
+        msg: "PC will automatically restart in 30 minutes. Please Save and close the applications and sign out. Thank you!"
 
     - name: Display a toast message (Reboot message)
       community.windows.win_toast:
         expire: 240
-        title: Weekly system restart required for optimal performance. PC will restart in 30 minutes. Please Save and close applications and sign out. Thank you!
+        title: Note - PC will restart in 30 minutes. Please Save and close the applications and sign out. Thank you!
         msg: Weekly System Restart Reminder
       async: 60
       poll: 0
