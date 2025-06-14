@@ -12,7 +12,7 @@
       ansible.windows.win_updates:
       # Caution: This play updates and restarts all the specified hosts.
         category_names: "*"
-        reboot: no
+        reboot: true
         log_path: c:\temp\patching.txt
       register: update_result
       until: update_result.found_update_count == 0
