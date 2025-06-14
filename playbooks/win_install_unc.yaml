@@ -90,6 +90,16 @@
       - OnlyOffice
       ignore_errors: true
 
+    - name: Silent install 7Zip MSI using win_package from the specified UNC path
+      ansible.windows.win_package:
+      # Specify the install_path on Variables in AWX before running
+        path: '{{ install_path }}\7z2301-x64.msi'
+        state: present
+        arguments: /q /norestart
+      tags:
+      - 7Zip
+      ignore_errors: true
+
     - name: Silent install Outlook for Windows using win_powershell from the specified UNC path
       ansible.windows.win_powershell:
       # Specify the install_path on Variables in AWX before running
@@ -158,7 +168,7 @@
       tags:
         - OFW_User
       ignore_errors: true
-  
+
     - name: Silent install Bitdefender using cmd (win_command)
       ansible.windows.win_command:
       # Specify the install_path on Variables in AWX before running
