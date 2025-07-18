@@ -66,20 +66,24 @@
       ignore_errors: true
     
     # Navisworks Freedom 2023
-    - name: Silent install Autodesk Navisworks Freedom 2023 using win_package from the specified UNC path
-      ansible.windows.win_copy:
-        src: '{{ install_path }}\Autodesk_Navisworks_Freedom_2023_Win_64bit_dlm'
-        dest: 'C:\Temp'
-      
-      ansible.windows.win_package:
-      # Specify the install_path on Variables in AWX before running
-        path: 'C:\Temp\Autodesk_Navisworks_Freedom_2023_Win_64bit_dlm\Setup.exe'
-        state: present
-        arguments: /silent
+    - name: Silent install Autodesk Navisworks Freedom 2023
       tags:
       - Navisworks_Freedom_2023
-      ignore_errors: true
+      block:
+        - name: Copy Autodesk Navisworks Freedom 2023 from the specified UNC path
+          ansible.windows.win_copy:
+            src: '{{ install_path }}\Autodesk_Navisworks_Freedom_2023_Win_64bit_dlm'
+            dest: 'C:\Temp'
+            ignore_errors: true
 
+        - name: Silent install Autodesk Navisworks Freedom 2023 using win_package from the specified path
+          ansible.windows.win_package:
+          # Specify the install_path on Variables in AWX before running
+            path: 'C:\Temp\Autodesk_Navisworks_Freedom_2023_Win_64bit_dlm\Setup.exe'
+            state: present
+            arguments: /silent
+            ignore_errors: true
+          
     # Autodesk Diroots ProSheets Addin
     - name: Silent install Autodesk Diroots ProSheets Addin using win_package from the specified UNC path
       ansible.windows.win_package:
