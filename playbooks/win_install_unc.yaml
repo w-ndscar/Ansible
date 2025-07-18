@@ -85,7 +85,7 @@
             path: 'C:\Temp\Autodesk_Navisworks_Freedom_2023_Win_64bit_dlm\Setup.exe'
             state: present
             arguments: --silent
-            ignore_errors: true
+          ignore_errors: true
           
     # Autodesk Diroots ProSheets Addin
     - name: Silent install Autodesk Diroots ProSheets Addin using win_package from the specified UNC path
