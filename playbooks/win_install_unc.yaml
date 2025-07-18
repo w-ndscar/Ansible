@@ -10,6 +10,7 @@
     ansible_become_password: '{{ pass1_pwd }}'
   
   tasks:
+    # PDF Sam Basic
     - name: Silent install PDF Sam MSI using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
@@ -20,6 +21,7 @@
       - PDF_Sam
       ignore_errors: true
 
+    # Google Chrome
     - name: Silent install Google Chrome MSI using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
@@ -30,6 +32,7 @@
       - Google_Chrome
       ignore_errors: true
 
+    # Firefox
     - name: Silent install Firefox MSI using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
@@ -40,6 +43,7 @@
       - Firefox
       ignore_errors: true
 
+    # Foxit Reader
     - name: Silent install Foxit Reader MSI using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
@@ -50,6 +54,7 @@
       - Foxit
       ignore_errors: true
 
+    # Autodesk Design Review
     - name: Silent install Autodesk Design Review using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
@@ -59,17 +64,23 @@
       tags:
       - Design_Review
       ignore_errors: true
-
+    
+    # Navisworks Freedom 2023
     - name: Silent install Autodesk Navisworks Freedom 2023 using win_package from the specified UNC path
+      ansible.windows.win_copy:
+        src: '{{ install_path }}\Autodesk_Navisworks_Freedom_2023_Win_64bit_dlm'
+        dest: 'C:\Temp'
+      
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
-        path: '{{ install_path }}\Autodesk_Navisworks_Freedom_2023_Win_64bit_dlm\Setup.exe'
+        path: 'C:\Temp\Autodesk_Navisworks_Freedom_2023_Win_64bit_dlm\Setup.exe'
         state: present
         arguments: /silent
       tags:
       - Navisworks_Freedom_2023
       ignore_errors: true
 
+    # Autodesk Diroots ProSheets Addin
     - name: Silent install Autodesk Diroots ProSheets Addin using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
@@ -80,6 +91,7 @@
       - Prosheets
       ignore_errors: true
 
+    # LibreOffice
     - name: Silent install LibreOffice using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
@@ -90,6 +102,7 @@
       - LibreOffice
       ignore_errors: true
 
+    # OnlyOffice
     - name: Silent install ONLYOffice using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
@@ -100,6 +113,7 @@
       - OnlyOffice
       ignore_errors: true
 
+    # 7Zip
     - name: Silent install 7Zip MSI using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
@@ -110,6 +124,7 @@
       - 7Zip
       ignore_errors: true
 
+    # Outlook for Windows (Powershell Download)
     - name: Silent install Outlook for Windows using win_powershell from the specified UNC path
       ansible.windows.win_powershell:
       # Specify the install_path on Variables in AWX before running
@@ -159,6 +174,7 @@
         - OFW_Machine
       ignore_errors: true
 
+    # Outlook for Windows (Powershell UNC Path)
     - name: Silent install Outlook for Windows using win_powershell from the specified UNC path
       ansible.windows.win_powershell:
       # Specify the install_path on Variables in AWX before running
@@ -170,6 +186,7 @@
         - OFW_Machine2
       ignore_errors: true
 
+    # Outlook for Windows (win_package)
     - name: Silent install Outlook for Windows using win_package
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
@@ -179,6 +196,7 @@
         - OFW_User
       ignore_errors: true
 
+    # Bitdefender (cmd method)
     - name: Silent install Bitdefender using cmd (win_command)
       ansible.windows.win_command:
       # Specify the install_path on Variables in AWX before running
@@ -187,8 +205,9 @@
         - Bitdefender
       # ignore_errors: true
       register: bitdefender
-      failed_when: bitdefender.rc != 1 and bitdefeder.rc != 0
+      failed_when: bitdefender.rc != 1 and bitdefender.rc != 0
 
+    # WorkTime Agent
     - name: Silent Install WorkTime Agent
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
