@@ -86,7 +86,12 @@
             state: present
             arguments: --noupdate -q
           ignore_errors: true
-          
+
+        - name: Cleaning up the temporary files
+          ansible.windows.win_file:
+            path: 'C:\Temp'
+            state: absent
+        
     # Autodesk Diroots ProSheets Addin
     - name: Silent install Autodesk Diroots ProSheets Addin using win_package from the specified UNC path
       ansible.windows.win_package:
