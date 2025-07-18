@@ -60,6 +60,16 @@
       - Design_Review
       ignore_errors: true
 
+    - name: Silent install Autodesk Navisworks Freedom 2023 using win_package from the specified UNC path
+      ansible.windows.win_package:
+      # Specify the install_path on Variables in AWX before running
+        path: '{{ install_path }}\Setup.msi'
+        state: present
+        arguments: /silent
+      tags:
+      - Navisworks_Freedom_2023
+      ignore_errors: true
+
     - name: Silent install Autodesk Diroots ProSheets Addin using win_package from the specified UNC path
       ansible.windows.win_package:
       # Specify the install_path on Variables in AWX before running
