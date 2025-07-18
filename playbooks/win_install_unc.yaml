@@ -75,7 +75,7 @@
             src: '{{ install_path }}\Autodesk_Navisworks_Freedom_2023_Win_64bit_dlm'
             dest: 'C:\Temp'
             ignore_errors: true
-        - vars:
+          vars:
             ansible_become_user: '{{ pass1_user }}'
             ansible_become_password: '{{ pass1_pwd }}'
 
