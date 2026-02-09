@@ -1,0 +1,18 @@
+---
+- name: win_uptime
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Finding uptime/boottime
+      ansible.windows.win_reboot:
+        boot_time_command: "(Get-CimInstance -ClassName Win32_OperatingSystem -Property LastBootUpTime).LastBootUpTime.ToFileTime()"
+      ignore_errors: true
+      tags:
+      -  win_uptime
+    - name: Finding uptime/boottime
+      ansible.windows.win_powershell:
+        script: |
+          Get-CimInstance -ClassName win32_operatingsystem | select csname, lastbootuptime
+      ignore_errors: true
+      tags:
+      - win_uptime_shell

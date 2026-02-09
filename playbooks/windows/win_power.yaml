@@ -1,0 +1,26 @@
+---
+- name: Shutdown/Reboot all the specified hosts
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Executing immediate shutdown forcefully
+    # Caution: This command shuts down all the specified hosts.
+      ansible.windows.win_command:
+        cmd: shutdown /s /f /t 0
+      tags:
+      - win_shutdown
+    - name: Shutdown with a message using Community module
+      community.general.shutdown:
+        delay: 300
+        msg: The PC is going to shutdown in 5 minutes. Please save and close all the Applications and Sign Out
+      tags: 
+      - win_shutdown_community
+    - name: Reboot the machine with a message
+      ansible.windows.win_reboot:
+      # Caution: This play restarts all the specified hosts.
+        msg: "Double Check. The PC will reboot in 30 minutes. Please click Close on this dialog and Save and close all the applications and Sign out"
+        pre_reboot_delay: 1800
+        reboot_timeout: 2400
+      ignore_errors: true
+      tags: 
+      - win_reboot

@@ -1,9 +1,0 @@
----
-- name: Shutdown all the specified hosts with a message (Community module)
-  hosts: all
-  gather_facts: false
-  tasks:
-    - name: Shutdown with a message using Community module
-      community.general.shutdown:
-        delay: 300
-        msg: The PC is going to shutdown in 5 minutes. Please save and close all the Applications and Sign Out

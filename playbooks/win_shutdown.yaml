@@ -1,9 +1,0 @@
----
-- name: Shutdown all the specified hosts
-  hosts: all
-  gather_facts: false
-  tasks:
-    - name: Executing immediate shutdown forcefully
-    # Caution: This command shuts down all the specified hosts.
-      ansible.windows.win_command:
-        cmd: shutdown /s /f /t 0

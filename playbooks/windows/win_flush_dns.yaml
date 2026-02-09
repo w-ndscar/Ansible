@@ -1,0 +1,17 @@
+---
+- name: Flushing DNS
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Executing Flush DNS
+      ansible.windows.win_command:
+        cmd: 'ipconfig "/flushdns"'
+    - name: Executing Flush DNS
+      ansible.windows.win_command:
+        cmd: 'ipconfig "/flushdns"'
+    - name: Executing Flush DNS
+      ansible.windows.win_command:
+        cmd: 'ipconfig "/flushdns"'
+    - name: Executing Flush DNS
+      ansible.windows.win_command:
+        cmd: 'ipconfig "/flushdns"'

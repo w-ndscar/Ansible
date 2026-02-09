@@ -1,8 +1,0 @@
----
-- name: GPUpdate Force
-  hosts: all
-  gather_facts: false
-  tasks:
-    - name: Running GPUPdate Forcefully
-      ansible.windows.win_command:
-        cmd: 'gpupdate "/force"'

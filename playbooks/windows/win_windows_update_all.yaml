@@ -1,0 +1,18 @@
+---
+- name: win_windows_update_all
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Create a Directory for logs
+      ansible.windows.win_file:
+        path: c:\temp
+        state: directory
+
+    - name: Search and install all available Windows Updates
+      ansible.windows.win_updates:
+      # Caution: This play updates and restarts all the specified hosts.
+        category_names: "*"
+        reboot: true
+        log_path: c:\temp\patching.txt
+      register: update_result
+      until: update_result.found_update_count == 0

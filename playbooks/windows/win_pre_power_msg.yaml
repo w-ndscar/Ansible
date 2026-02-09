@@ -1,0 +1,42 @@
+---
+- name: Display a message and a notification before shutdown/reboot
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Displaying a Shutdown message
+      community.windows.win_msg:
+        display_seconds: 240
+        msg: "Maintenance Alert: The PC is going to shutdown now. Please Save and close applications and sign out. Thank you!"
+      ignore_errors: true
+      tags: 
+      - win_shutdown_msg
+
+    - name: Display a Shutdown ttoast message
+      community.windows.win_toast:
+        expire: 240
+        title: Maintenance Alert! The PC is going to shutdown now. Please Save and close applications and sign out. Thank you!
+        msg: Maintenace Alert
+      async: 60
+      poll: 0
+      ignore_errors: true
+      tags: 
+      - win_shutdown_msg
+    
+    - name: Display a message (Reboot message)
+      community.windows.win_msg:
+        display_seconds: 240
+        msg: "Urgent system restart is required for optimal performance. PC will restart in 30 minutes. Please Save and close the applications and sign out. Thank you!"
+      ignore_errors: true
+      tags: 
+      - win_reboot_msg
+
+    - name: Display a toast message (Reboot message)
+      community.windows.win_toast:
+        expire: 240
+        title: Note - PC will restart in 30 minutes. Please Save and close the applications and sign out. Thank you!
+        msg: Weekly System Restart Reminder
+      async: 60
+      poll: 0
+      ignore_errors: true
+      tags: 
+      - win_reboot_msg

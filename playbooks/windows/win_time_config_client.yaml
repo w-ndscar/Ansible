@@ -1,0 +1,31 @@
+---
+- name: Configure and Sync Windows time all the specified hosts
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Configuring Windows Time to sync with DC
+      ansible.windows.win_command:
+        cmd: w32tm /config /syncfromflags:DOMHIER /update
+        tags:
+        - config_win_time
+    - name: Stopping Windows Time service
+      ansible.windows.win_service:
+        name: w32time
+        state: stopped
+      async: 45
+      poll: 5
+      tags: 
+      - sync_win_time
+    - name: Starting Windows Time service
+      ansible.windows.win_service:
+        name: wuauserv
+        state: started
+      async: 45
+      poll: 5
+      tags: 
+      - sync_win_time
+    - name: Executing time sync
+      ansible.windows.win_command:
+        cmd: w32tm /resync
+      tags: 
+      - sync_win_time

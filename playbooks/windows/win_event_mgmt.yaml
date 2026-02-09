@@ -1,0 +1,26 @@
+---
+- name: Windows Event Management
+  hosts: all
+  gather_facts: false
+  #collections:
+  # - community.windows
+  tasks:
+    - name: Clear event entries for Application Log
+      win_eventlog:
+        name: Application
+        source: Application
+        state: clear
+      tags:
+      - Application_Clear
+
+    - name: Add a new event
+      win_eventlog_entry:
+        log: Application
+        source: Application
+        event_id: 5555
+        message: This is a test from Ansible
+        entry_type: Error
+        category: 5
+        raw_data: 10,20
+      tags:
+      - Application_Entry
