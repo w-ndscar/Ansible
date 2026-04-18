@@ -24,3 +24,11 @@
       ignore_errors: true
       tags: 
       - win_reboot
+    - name: Reboot the machine quick
+      ansible.windows.win_reboot:
+      # Caution: This play restarts all the specified hosts.
+        msg: "Double Check. The PC will reboot in 30 minutes. Please click Close on this dialog and Save and close all the applications and Sign out"
+        reboot_timeout: 120
+      ignore_errors: true
+      tags: 
+      - win_reboot_quick
