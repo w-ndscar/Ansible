@@ -1,0 +1,31 @@
+---
+- name: Get Windows Version Info
+  hosts: all
+  gather_facts: false
+  vars:
+    report_file: "/tmp/windows_versions_{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}.csv"
+  tasks:
+    - name: Get Windows version details
+      ansible.windows.win_reg_query:
+        path: HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion
+        name:
+          - ProductName
+          - DisplayVersion
+          - CurrentBuildNumber
+          - UBR
+      register: reg_result
+
+    - name: Display Windows version
+      debug:
+        msg: >
+          {{ inventory_hostname }} —
+          {{ reg_result.value.ProductName.value }}
+          {{ reg_result.value.DisplayVersion.value }}
+          (Build {{ reg_result.value.CurrentBuildNumber.value }}.{{ reg_result.value.UBR.value }})
+
+    - name: Save results to CSV on control node
+      lineinfile:
+        path: "{{ report_file }}"
+        line: "{{ inventory_hostname }},{{ reg_result.value.ProductName.value }},{{ reg_result.value.DisplayVersion.value }},{{ reg_result.value.CurrentBuildNumber.value }}.{{ reg_result.value.UBR.value }}"
+        create: true
+      delegate_to: localhost
