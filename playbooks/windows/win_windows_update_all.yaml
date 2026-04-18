@@ -10,16 +10,22 @@
 
     - name: Search and install all available Windows Updates
       ansible.windows.win_updates:
-      # Caution: This play updates and restarts all the specified hosts.
         category_names: "*"
-        reboot: true
+        reboot: false
         log_path: c:\temp\patching.txt
       register: update_result
-      until: update_result.found_update_count == 0
       ignore_errors: true
-      async: 3600       # max seconds before Ansible gives up on this host
-      poll: 30   
-    - name: Report skipped hosts
+      async: 3600
+      poll: 30
+
+    - name: Reboot if required
+      ansible.windows.win_reboot:
+        reboot_timeout: 600
+      when:
+        - update_result is not failed
+        - update_result.reboot_required | default(false)
+
+    - name: Report failed or timed out hosts
       debug:
         msg: "WARNING: Update failed or timed out on {{ inventory_hostname }} — check c:\\temp\\patching.txt"
       when: update_result is failed
