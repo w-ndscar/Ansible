@@ -16,3 +16,10 @@
         log_path: c:\temp\patching.txt
       register: update_result
       until: update_result.found_update_count == 0
+      ignore_errors: true
+      async: 3600       # max seconds before Ansible gives up on this host
+      poll: 30   
+    - name: Report skipped hosts
+      debug:
+        msg: "WARNING: Update failed or timed out on {{ inventory_hostname }} — check c:\\temp\\patching.txt"
+      when: update_result is failed
