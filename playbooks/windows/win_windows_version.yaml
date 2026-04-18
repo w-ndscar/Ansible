@@ -5,27 +5,41 @@
   vars:
     report_file: "/tmp/windows_versions_{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}.csv"
   tasks:
-    - name: Get Windows version details
-      ansible.windows.win_reg_query:
+    - name: Get ProductName
+      ansible.windows.win_reg_stat:
         path: HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion
-        name:
-          - ProductName
-          - DisplayVersion
-          - CurrentBuildNumber
-          - UBR
-      register: reg_result
+        name: ProductName
+      register: reg_productname
+
+    - name: Get DisplayVersion
+      ansible.windows.win_reg_stat:
+        path: HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion
+        name: DisplayVersion
+      register: reg_displayversion
+
+    - name: Get CurrentBuildNumber
+      ansible.windows.win_reg_stat:
+        path: HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion
+        name: CurrentBuildNumber
+      register: reg_buildnumber
+
+    - name: Get UBR
+      ansible.windows.win_reg_stat:
+        path: HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion
+        name: UBR
+      register: reg_ubr
 
     - name: Display Windows version
       debug:
         msg: >
           {{ inventory_hostname }} —
-          {{ reg_result.value.ProductName.value }}
-          {{ reg_result.value.DisplayVersion.value }}
-          (Build {{ reg_result.value.CurrentBuildNumber.value }}.{{ reg_result.value.UBR.value }})
+          {{ reg_productname.value }}
+          {{ reg_displayversion.value }}
+          (Build {{ reg_buildnumber.value }}.{{ reg_ubr.value }})
 
     - name: Save results to CSV on control node
       lineinfile:
         path: "{{ report_file }}"
-        line: "{{ inventory_hostname }},{{ reg_result.value.ProductName.value }},{{ reg_result.value.DisplayVersion.value }},{{ reg_result.value.CurrentBuildNumber.value }}.{{ reg_result.value.UBR.value }}"
+        line: "{{ inventory_hostname }},{{ reg_productname.value }},{{ reg_displayversion.value }},{{ reg_buildnumber.value }}.{{ reg_ubr.value }}"
         create: true
       delegate_to: localhost
