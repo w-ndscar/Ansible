@@ -54,6 +54,17 @@
       - Foxit
       ignore_errors: true
 
+    # QuickLook
+    - name: Silent install QuickLook MSI using win_package from the specified UNC path
+      ansible.windows.win_package:
+      # Specify the install_path on Variables in AWX before running
+        path: '{{ install_path }}\QuickLook.msi'
+        state: present
+        arguments: /q /norestart
+      tags:
+      - QuickLook
+      ignore_errors: true
+
     # Autodesk Design Review
     - name: Silent install Autodesk Design Review using win_package from the specified UNC path
       ansible.windows.win_package:
