@@ -60,7 +60,7 @@
       # Specify the install_path on Variables in AWX before running
         path: '{{ install_path }}\QuickLook.msi'
         state: present
-        arguments: /q /norestart INSTALLFOLDER=`"C:\Program Files\QuickLook`"
+        arguments: /q /norestart INSTALLFOLDER="C:\Program Files\QuickLook"
       tags:
       - QuickLook
       ignore_errors: true
