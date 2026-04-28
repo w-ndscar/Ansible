@@ -2,6 +2,14 @@
 - name: Uninstall MSI using win_package module (UNC)
   hosts: all
   gather_facts: false
+  become: true
+  become_method: runas
+  become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+  vars:
+    ansible_become_user: '{{ pass1_user }}'
+    ansible_become_password: '{{ pass1_pwd }}'
+  
+  
   tasks:
     - name: Silent uninstall PDF Sam MSI using win_package by referring to the specified UNC path
       ansible.windows.win_package:
