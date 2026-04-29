@@ -1,0 +1,15 @@
+---
+- name: Set Startup App for Windows (All Users)
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Create the same shortcut using environment variables
+      community.windows.win_shortcut:
+        description: QuickLook Preview Application
+        src: '%ProgramFiles%\QuickLook\QuickLook.exe'
+        dest: 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\QuickLook.lnk'
+        icon: '%ProgramFiles%\QuickLook\QuickLook.exe,0'
+        directory: '%ProgramFiles%\QuickLook'
+      tags:
+      - QuickLook
+      ignore_errors: true
